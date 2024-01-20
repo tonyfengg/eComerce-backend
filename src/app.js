@@ -3,8 +3,9 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const compression = require('compression');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 // const { checkOverload } = require('./helpers/check.connect');
+const { isDev } = require('./configs/config.app');
 const app = express();
 
 // init middleware
@@ -16,7 +17,7 @@ app.use(express.json({ limit: '1000mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // init db
-require('./dbs/init.mongodb');
+require('./databases/init.mongodb');
 // checkOverload();
 
 // init routes
@@ -28,12 +29,12 @@ app.use((req, res, next) => {
   error.status = 404;
   next(error);
 });
-
 app.use((error, req, res, next) => {
   const statusCode = error.status || 500;
   return res.status(statusCode).json({
     message: error.message || 'internal server error',
     status: 'error',
+    stack: isDev ? error.stack : undefined,
     code: statusCode,
   });
 });

@@ -7,6 +7,7 @@ const ReasonStatusCode = {
   OK: 'Success',
   CREATED: 'Created!',
 };
+
 class SuccessResponse {
   constructor({ message, statusCode = StatusCode.OK, reasonStatusCode = ReasonStatusCode.OK, metadata = {} }) {
     this.message = !message ? reasonStatusCode : message;
@@ -36,7 +37,9 @@ class CREATED extends SuccessResponse {
     this.options = options;
   }
 }
+
 module.exports = {
   OK,
   CREATED,
+  SuccessResponse,
 };
