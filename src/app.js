@@ -1,26 +1,26 @@
-const express = require("express");
-const morgan = require("morgan");
-const helmet = require("helmet");
-const compression = require("compression");
+require('dotenv').config();
+const express = require('express');
+const morgan = require('morgan');
+const helmet = require('helmet');
+const compression = require('compression');
+const bodyParser = require('body-parser');
+// const { checkOverload } = require('./helpers/check.connect');
 const app = express();
 
 // init middleware
-app.use(morgan("dev")); // dev combined common short tiny
+app.use(morgan('dev')); // dev combined common short tiny
 app.use(helmet());
 app.use(compression());
+// app.use(bodyParser.json({ limit: '1000mb' }));
+app.use(express.json({ limit: '1000mb' }));
+app.use(express.urlencoded({ extended: true }));
 
 // init db
+require('./dbs/init.mongodb');
+// checkOverload();
 
 // init routes
-app.get("/", (req, res) => {
-  const strCompress =
-    "lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nunc eget ultricies ultricies, nisl nunc ultricies elit, nec ultricies nisl elit";
-
-  res.status(200).json({
-    message: "Hello AE",
-    metadata: strCompress.repeat(10000),
-  });
-});
+app.use('/', require('./routes/index'));
 
 // handle errors
 
