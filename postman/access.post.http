@@ -1,9 +1,9 @@
 @url_dev=http://localhost:3033/v1/api/
 
 @api_key=03f7dc427f5ebc3b81ee628d69623e5feab81b8df12d1ef454eea7fb76a353862796405d2681f0ea52517b99b2aa956002020439262ad9b3534080733b9b7a13
-@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWFiN2E2MGMwZTNhZjFhYTM5OTgwZGMiLCJlbWFpbCI6InNob3AxMkBnbWFpbC5jb20iLCJpYXQiOjE3MDU4MTQzNTIsImV4cCI6MTcwNTk4NzE1Mn0.-O2vtnQMHIpYoqpC9EHbCI6wFNdhq1yTjnG4ciQDpZU
+@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWFiN2E2MGMwZTNhZjFhYTM5OTgwZGMiLCJlbWFpbCI6InNob3AxMkBnbWFpbC5jb20iLCJpYXQiOjE3MDU4MjMzOTcsImV4cCI6MTcwNTk5NjE5N30.u4devBKtkYGxVH5dfa5qI-6qmTjF54mgGSXI3eTP_zs
 
-@refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWFiN2E2MGMwZTNhZjFhYTM5OTgwZGMiLCJlbWFpbCI6InNob3AxMkBnbWFpbC5jb20iLCJpYXQiOjE3MDU4MTQzNTIsImV4cCI6MTcwNjQxOTE1Mn0.ViSdzRgfTp0SvOZmNsh3gozKeU0nLoEVDggYRtzNiYk
+@refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWFiN2E2MGMwZTNhZjFhYTM5OTgwZGMiLCJlbWFpbCI6InNob3AxMkBnbWFpbC5jb20iLCJpYXQiOjE3MDU4MjM0MTQsImV4cCI6MTcwNjQyODIxNH0.cIkqE30LWlJ-aggHrVj9ABqyUDUOGjzq0afDmrFGrnI
 
 @userId=65ab7a60c0e3af1aa39980dc
 ### signup
@@ -19,7 +19,7 @@ X-Api-Key: {{api_key}}
 
 
 ### login
-POST {{url_dev}}shop/login
+POST {{url_dev}}auth/shop/login
 Content-Type: application/json
 X-Api-Key: {{api_key}}
 
@@ -30,14 +30,14 @@ X-Api-Key: {{api_key}}
 }
 
 ### logout
-POST {{url_dev}}shop/logout
+POST {{url_dev}}auth/shop/logout
 Content-Type: application/json
 X-Api-Key: {{api_key}}
 X-Client-Id: {{userId}}
 Authorization: {{accessToken}}
 
 ### refresh token
-POST {{url_dev}}shop/refreshtoken
+POST {{url_dev}}auth/shop/refreshtoken
 Content-Type: application/json
 X-Api-Key: {{api_key}}
 X-Client-Id: {{userId}}
@@ -52,15 +52,67 @@ X-Client-Id: {{userId}}
 Authorization: {{accessToken}}
 
 {
-    "product_name":"Iphone 14 128GB",
+    "product_name":"Iphone 12 512GB",
     "product_price":10800,
-    "product_description":"Iphone 14 128GB 5G 6GB RAM 128GB ROM 6.1 inch 12MP+12MP+12MP+TOF 3D Camera A15 Bionic Chip IOS 15 IP68 Waterproof Wireless Charging Smartphone",
+    "product_description":"Iphone 15 128GB 5G 6GB RAM 128GB ROM 6.1 inch 12MP+12MP+12MP+TOF 3D Camera A15 Bionic Chip IOS 15 IP68 Waterproof Wireless Charging Smartphone",
     "product_type":"Electronics",
-    "product_thumb":"https://images-na.ssl-images-amazon.com/images/I/71MHTD3uL4L._AC_SL1500_.jpg",
+    "product_thumb":"https://www.gizmochina.com/wp-content/uploads/2021/09/Apple-iPhone-13-Pro-Max-1-500x500.jpg",
     "product_quantity":500,
     "product_attributes":{
         "manufacturer":"Apple",
         "color":"Black",
-        "model":"Ipone 14"
+        "model":"Ipone 16"
     }
 }
+
+### query product
+
+GET {{url_dev}}product/draft/all
+Content-Type: application/json
+X-Api-Key: {{api_key}}
+X-Client-Id: {{userId}}
+Authorization: {{accessToken}}
+
+
+### query product set publish
+
+POST {{url_dev}}product/publish/65acb94902ac9d6a2f872a71
+Content-Type: application/json
+X-Api-Key: {{api_key}}
+X-Client-Id: {{userId}}
+Authorization: {{accessToken}}
+
+### query product set un publish
+
+POST {{url_dev}}product/unpublish/65acb94902ac9d6a2f872a71
+Content-Type: application/json
+X-Api-Key: {{api_key}}
+X-Client-Id: {{userId}}
+Authorization: {{accessToken}}
+
+
+### query product published
+
+GET {{url_dev}}product/published/all
+Content-Type: application/json
+X-Api-Key: {{api_key}}
+X-Client-Id: {{userId}}
+Authorization: {{accessToken}}
+
+### query product published
+
+GET {{url_dev}}product/search?search=iphone
+X-Api-Key: {{api_key}}
+
+
+
+### find all product published
+
+GET {{url_dev}}product
+X-Api-Key: {{api_key}}
+
+
+### find product published
+
+GET {{url_dev}}product/65acbe7b1a1e5ac4904a4c5d
+X-Api-Key: {{api_key}}

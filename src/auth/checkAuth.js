@@ -4,6 +4,11 @@ const { HEADER } = require('../constants/common.constans');
 const { findById } = require('../services/apiKey.service');
 
 const apiKey = async (req, res, next) => {
+  const openRoutes = ['/v1/api/product/search'];
+  if (openRoutes.includes(req.path)) {
+    console.log('openRoutes::', openRoutes, req.path);
+    // return next();
+  }
   try {
     const key = req.headers[HEADER.API_KEY]?.toString();
     if (!key) {
