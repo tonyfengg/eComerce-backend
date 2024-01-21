@@ -1,9 +1,9 @@
 @url_dev=http://localhost:3033/v1/api/
 
 @api_key=03f7dc427f5ebc3b81ee628d69623e5feab81b8df12d1ef454eea7fb76a353862796405d2681f0ea52517b99b2aa956002020439262ad9b3534080733b9b7a13
-@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWFiN2E2MGMwZTNhZjFhYTM5OTgwZGMiLCJlbWFpbCI6InNob3AxMkBnbWFpbC5jb20iLCJpYXQiOjE3MDU3NjAzNjYsImV4cCI6MTcwNTkzMzE2Nn0.UorIfsQRk2ooKQgJT1tQhoMxsh508OBYLjgk26N8hpQ
+@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWFiN2E2MGMwZTNhZjFhYTM5OTgwZGMiLCJlbWFpbCI6InNob3AxMkBnbWFpbC5jb20iLCJpYXQiOjE3MDU4MTQzNTIsImV4cCI6MTcwNTk4NzE1Mn0.-O2vtnQMHIpYoqpC9EHbCI6wFNdhq1yTjnG4ciQDpZU
 
-@refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWFiN2E2MGMwZTNhZjFhYTM5OTgwZGMiLCJlbWFpbCI6InNob3AxMkBnbWFpbC5jb20iLCJpYXQiOjE3MDU3NjAzNjYsImV4cCI6MTcwNjM2NTE2Nn0.DfNqZJoZ20qncVg9WZ3TPblDkgYBbzbtnQesZaXrukw
+@refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWFiN2E2MGMwZTNhZjFhYTM5OTgwZGMiLCJlbWFpbCI6InNob3AxMkBnbWFpbC5jb20iLCJpYXQiOjE3MDU4MTQzNTIsImV4cCI6MTcwNjQxOTE1Mn0.ViSdzRgfTp0SvOZmNsh3gozKeU0nLoEVDggYRtzNiYk
 
 @userId=65ab7a60c0e3af1aa39980dc
 ### signup
@@ -43,3 +43,24 @@ X-Api-Key: {{api_key}}
 X-Client-Id: {{userId}}
 X-Refresh-Token: {{refreshToken}}
 
+
+### crete product
+POST {{url_dev}}product/create
+Content-Type: application/json
+X-Api-Key: {{api_key}}
+X-Client-Id: {{userId}}
+Authorization: {{accessToken}}
+
+{
+    "product_name":"Iphone 14 128GB",
+    "product_price":10800,
+    "product_description":"Iphone 14 128GB 5G 6GB RAM 128GB ROM 6.1 inch 12MP+12MP+12MP+TOF 3D Camera A15 Bionic Chip IOS 15 IP68 Waterproof Wireless Charging Smartphone",
+    "product_type":"Electronics",
+    "product_thumb":"https://images-na.ssl-images-amazon.com/images/I/71MHTD3uL4L._AC_SL1500_.jpg",
+    "product_quantity":500,
+    "product_attributes":{
+        "manufacturer":"Apple",
+        "color":"Black",
+        "model":"Ipone 14"
+    }
+}
