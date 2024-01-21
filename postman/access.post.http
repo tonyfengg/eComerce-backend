@@ -116,3 +116,23 @@ X-Api-Key: {{api_key}}
 
 GET {{url_dev}}product/65acbe7b1a1e5ac4904a4c5d
 X-Api-Key: {{api_key}}
+
+
+### update product
+
+PATCH {{url_dev}}product/update/65acbe7b1a1e5ac4904a4c5d
+Content-Type: application/json
+X-Api-Key: {{api_key}}
+X-Client-Id: {{userId}}
+Authorization: {{accessToken}}
+
+{
+    "product_attributes":{
+        "manufacturer":"Apple",
+        "color":"Gold",
+        "model":null
+    },
+    "product_type": "Electronics",
+    "product_name":"Iphone 18 2TB",
+    "product_price":null
+}
